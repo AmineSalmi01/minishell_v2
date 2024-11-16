@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 10:14:08 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/15 19:17:02 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/16 01:11:18 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**helper_function(char *line)
 	command = parse_split(full_command, '|');
 	free(full_command);
 	return (command);
-}	
+}
 
 void	f()
 {
@@ -94,7 +94,7 @@ int	main(int ac, char *av[], char **env)
 	char		**command;
 	char		*line;
 
-	atexit(f);
+	// atexit(f)
 	my_env = init_and_get_env(av, ac, env);
 	while (1)
 	{
@@ -113,8 +113,8 @@ int	main(int ac, char *av[], char **env)
 			ft_execute(lst, &my_env);
 		// priiint(lst);
 		free_lst(&lst);
+		remove_file();
 	}
-	// remove_file();
 	free_env(&my_env);
 	return (0);
-}	
+}

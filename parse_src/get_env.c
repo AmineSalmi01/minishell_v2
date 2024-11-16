@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:51:37 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/14 13:04:09 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/16 01:09:00 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	__add_list_back(t_env **lst, t_content *content)
 {
 	t_env	*last;
 	t_env	*new;
+
 	new = __creat_list(content);
 	if (new && lst)
 	{
@@ -51,7 +52,7 @@ static void	__add_list_back(t_env **lst, t_content *content)
 
 static int	__special_case(t_content *content, t_env **re)
 {
-	char		pwd[PATH_MAX];
+	char	pwd[PATH_MAX];
 
 	content = (t_content *)malloc(sizeof(t_content));
 	if (getcwd(pwd, sizeof(pwd)) == NULL)

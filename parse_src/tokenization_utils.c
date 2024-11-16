@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:23:02 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/15 18:53:00 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/15 23:57:08 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ bool	check_if_pair(char *cmd, int *i, bool *pair)
 
 void	handle_dollar_sign(t_buffer string, int *i, t_env *e, int *index)
 {
-	bool		in_the_first;
-	bool		pair;
-	char		var_name[256];
-	char		*value;
-	int			j;
+	bool	in_the_first;
+	bool	pair;
+	char	var_name[256];
+	char	*value;
+	int		j;
 
 	in_the_first = true;
 	pair = true;
@@ -64,13 +64,12 @@ char	*__env(char *cmd, t_env *e)
 	i = 0;
 	buffer_index = 0;
 	string.cmd = parse_strdup(cmd);
-	string.buffer = __calloc(get_env_size(cmd, e) + 10, 1);
-	// printf("gggettt : %d\n", get_env_size(cmd, e));
+	string.buffer = __calloc(get_env_size(cmd, e) + 1, 1);
 	while (cmd[i])
 	{
 		quotes_status(cmd, &i, &in_single_quotes, &in_quotes);
-		if (cmd[i + 1] && cmd[i] == '$'
-			&& cmd[i + 1] != ' ' && !in_single_quotes && cmd[i + 1] != '\"')
+		if (cmd[i + 1] && cmd[i] == '$' && cmd[i + 1] != ' '
+			&& !in_single_quotes && cmd[i + 1] != '\"')
 			handle_dollar_sign(string, &i, e, &buffer_index);
 		else
 			string.buffer[buffer_index++] = cmd[i++];

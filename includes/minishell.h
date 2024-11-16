@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 10:14:11 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/15 19:08:43 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/15 22:12:52 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,8 @@ void				__free(t_list **lst);
 t_env				*get_env(char **env);
 char				*__strchr(char *str, int c);
 bool				check_if_pair(char *cmd, int *i, bool *pair);
-void				handle_dollar_sign(t_buffer string, int *i, t_env *e, int *index);
+void				handle_dollar_sign(t_buffer string, int *i, t_env *e,
+						int *index);
 // --------------------add_spaces----------------------------//
 char				*add_spaces(char *cmd);
 int					__is_redir(char c);

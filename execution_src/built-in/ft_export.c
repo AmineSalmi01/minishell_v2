@@ -32,7 +32,7 @@ int	check_export_elements(char *var)
 
 int	elemnt_exist(t_env *var, t_env *env)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (env)
@@ -70,7 +70,7 @@ t_env	*allocate_new_node(void)
 	return (new_node);
 }
 
-int		handle_export_arg(t_token *cmd, t_env **env, char *arg)
+int	handle_export_arg(t_token *cmd, t_env **env, char *arg)
 {
 	t_env	*new_node;
 
@@ -94,7 +94,7 @@ int		handle_export_arg(t_token *cmd, t_env **env, char *arg)
 
 int	ft_export(t_token *cmd, t_env **env)
 {
-	int		i;
+	int	i;
 
 	if (cmd->arg[1] == NULL)
 	{

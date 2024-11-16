@@ -62,4 +62,3 @@ void	print_identifier_error(char *command, char *identifier)
 	else if (!ft_strcmp(command, "export"))
 		printf("mminishell: export: `%s':not a valid identifier\n", identifier);
 }
-

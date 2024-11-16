@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_env_special_case.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/16 01:09:10 by asalmi            #+#    #+#             */
+/*   Updated: 2024/11/16 01:09:54 by asalmi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static t_env	*__creat_list_special_case(t_content *content)
@@ -23,6 +35,7 @@ void	__add_list_special_case(t_env **lst, t_content *content)
 {
 	t_env	*last;
 	t_env	*new;
+
 	new = __creat_list_special_case(content);
 	if (new && lst)
 	{
@@ -55,8 +68,8 @@ char	*__env_heredoc(char *cmd, t_env *e)
 	while (cmd[i])
 	{
 		quotes_status(cmd, &i, &in_single_quotes, &in_quotes);
-		if (cmd[i + 1] && cmd[i] == '$'
-			&& cmd[i + 1] != ' ' && cmd[i + 1] != '\"')
+		if (cmd[i + 1] && cmd[i] == '$' && cmd[i + 1] != ' ' && 
+			cmd[i + 1] != '\"')
 			handle_dollar_sign(string, &i, e, &buffer_index);
 		else
 			string.buffer[buffer_index++] = cmd[i++];

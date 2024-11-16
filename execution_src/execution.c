@@ -95,7 +95,6 @@ void	ft_execute(t_lst *cmd, t_env **env)
 	char	*heredoc_file;
 
 	head = cmd;
-	
 	heredoc_file = ft_strdup("/tmp/heredoc_file");
 	while (cmd)
 	{
@@ -115,5 +114,4 @@ void	ft_execute(t_lst *cmd, t_env **env)
 		execute_simple_command(cmd->token, env);
 	else if (cmd->next != NULL)
 		execute_piped_commands(cmd, env);
-		
 }

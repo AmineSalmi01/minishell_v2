@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbadda <bbadda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:04:29 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/13 17:58:15 by bbadda           ###   ########.fr       */
+/*   Updated: 2024/11/15 19:52:11 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,18 @@ int	get_lenth(char *cmd, int x)
 char	*init_and_alloc(char *cmd, int *i)
 {
 	char	*var_name;
+	bool	in_the_first;
 	int		x;
 	int		j;
 
 	j = 0;
+	in_the_first = true;
 	x = *i;
 	var_name = (char *)malloc(get_lenth(cmd, x) + 1);
-	while (cmd[*i] && (ft_isalnum(cmd[*i]) || cmd[*i] == '_' || cmd[*i] == '?'))
+	while (cmd[*i] && (ft_isalnum(cmd[*i]) || cmd[*i] == '_' || (cmd[*i] == '?'
+				&& in_the_first)))
 	{
+		in_the_first = false;
 		var_name[j] = cmd[*i];
 		(j)++;
 		(*i)++;
@@ -87,16 +91,16 @@ char	*init_and_alloc(char *cmd, int *i)
 
 int	get_env_size(char *cmd, t_env *e)
 {
-	t_index		index;
-	int			size;
-	char		*var_name;
-	char		*tmp;
+	t_index	index;
+	int		size;
+	char	*var_name;
+	char	*tmp;
 
 	size = 0;
 	index.i = -1;
 	while (cmd[++index.i])
 	{
-		if (cmd[index.i] == '$' && (cmd[index.i + 1] || cmd [index.i] == ' '))
+		if (cmd[index.i] == '$' && (cmd[index.i + 1] || cmd[index.i] != ' '))
 		{
 			index.i++;
 			var_name = init_and_alloc(cmd, &index.i);

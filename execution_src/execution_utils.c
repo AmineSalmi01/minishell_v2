@@ -46,14 +46,14 @@ void	__check_and_execute(t_token *cmd, t_env **env)
 
 	if (!cmd->command)
 		exit((*env)->exit_status);
-	
 	executable_path = check_path(cmd, *env);
 	if (!executable_path)
 	{
 		exit((*env)->exit_status);
 	}
 	env_copy = copy_env(*env);
-	if (!env_copy){
+	if (!env_copy)
+	{
 		exit((*env)->exit_status);
 	}
 	if (execve(executable_path, cmd->arg, env_copy) == -1)

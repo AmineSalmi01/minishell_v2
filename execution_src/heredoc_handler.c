@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:16:56 by asalmi            #+#    #+#             */
-/*   Updated: 2024/11/15 18:53:37 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/15 23:36:34 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	process_heredoc(t_herdoc *heredoc, t_env *env, int fd)
 		}
 		if (!ft_strcmp(input_line, heredoc->del))
 		{
-			// free_heredoc(heredoc);
 			free(input_line);
 			break ;
 		}
@@ -77,12 +76,14 @@ void	process_heredoc(t_herdoc *heredoc, t_env *env, int fd)
 
 void	child_process(t_lst *cmd, t_env *env, char *heredoc_file)
 {
-	int	fd;
+	int			fd;
+	t_herdoc	*current_heredoc;
 
 	fd = -1;
 	signal(SIGINT, SIG_DFL);
 	while (cmd->token->herdoc)
 	{
+		current_heredoc = cmd->token->herdoc;
 		fd = open(heredoc_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd < 0)
 		{
@@ -91,7 +92,8 @@ void	child_process(t_lst *cmd, t_env *env, char *heredoc_file)
 		}
 		process_heredoc(cmd->token->herdoc, env, fd);
 		close(fd);
-		cmd->token->herdoc = cmd->token->herdoc->next;
+		cmd->token->herdoc = current_heredoc->next;
+		free_heredoc(current_heredoc);
 	}
 	env->exit_status = 0;
 	exit(env->exit_status = 0);

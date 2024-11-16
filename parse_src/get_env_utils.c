@@ -6,7 +6,7 @@
 /*   By: asalmi <asalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:41:39 by bbadda            #+#    #+#             */
-/*   Updated: 2024/11/13 22:54:29 by asalmi           ###   ########.fr       */
+/*   Updated: 2024/11/16 00:15:32 by asalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*replace_env(t_env *e, char *s)
 {
 	if (cmp("?", s))
 		return (ft_itoa(e->exit_status));
-	// printf("$$$ : %s\n", s);
 	while (e)
 	{
 		if (cmp(e->content->var, s))

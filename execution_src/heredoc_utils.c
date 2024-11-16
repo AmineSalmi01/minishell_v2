@@ -14,7 +14,7 @@
 
 void	parent_process_logic(pid_t pid, t_env *env)
 {
-	int status;
+	int	status;
 
 	handler_signal(0);
 	waitpid(pid, &status, 0);
